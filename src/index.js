@@ -15,7 +15,7 @@ module.exports = exports.default = class AnimationPrimitive extends React.Compon
 
   static defaultProps = {
     phases: ['leave', 'enter'],
-    listenerProp: 'onAnimationEnd',
+    listenerProp: 'onTransitionEnd',
     onChange: () => {}
   }
 
@@ -64,11 +64,11 @@ module.exports = exports.default = class AnimationPrimitive extends React.Compon
           phaseComplete: false
         }),
         () => {
-          setTimeout(() => {
+          window.requestAnimationFrame(() => {
             window.requestAnimationFrame(() => {
               this.setState({ phaseActive: true })
             })
-          }, 0)
+          })
         }
       )
     }
