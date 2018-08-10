@@ -96,6 +96,9 @@ module.exports = exports.default = class AnimationPrimitive extends React.Compon
   }
 
   render () {
-    return this.props.render(this.getStateAndHelpers())
+    const render = this.props.render || (
+      Array.isArray(this.props.children) ? this.props.children[0] : this.props.children
+    )
+    return render(this.getStateAndHelpers())
   }
 }
